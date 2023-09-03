@@ -4,13 +4,13 @@ class Api
   public $ip_address = '';
   public $username = '';
   public $password = '';
-	public function __construct($ip_address, $username, $password) {
+  public function __construct($ip_address, $username, $password) {
     $this->ip_address = $ip_address;
     $this->username = $username;
     $this->password = $password;
-	}
+  }
 
-	function balance($fiat_display = "USD")
+  function balance($fiat_display = "USD")
   {
     // {
     //   "currencies":
@@ -43,7 +43,7 @@ class Api
     return $this->call('GET', 'balance', array('fiat_display_currency'=> $fiat_display));
   }
 
-  function blacklist($api_ip='', $coin='', $stake='.*')
+  function blacklist($coin='', $stake='.*')
   {
     // {
     //  "blacklist":[".*(_PREMIUM|BEAR|BULL|DOWN|HALF|HEDGE|UP|[1235][SL]|2021)/.*",".*(USDT_|USDT-).*","(AUD|BRZ|CAD|CHF|EUR|GBP|HKD|IDRT|JPY|NGN|RUB|SGD|TRY|UAH|USD|ZAR)/.*","(BUSD|CUSD|CUSDT|DAI|PAX|PAXG|SUSD|TUSD|USDC|USDN|USDP|USDT|UST|VAI|USDD|USDJ)/.*","(ACM|AFA|ALA|ALL|ALPINE|APL|ASR|ATM|BAR|CAI|CITY|FOR|GAL|GOZ|IBFK|JUV|LAZIO|LEG|LOCK-1|NAVI|NMR|NOV|OG|PFL|PORTO|PSG|ROUSH|SANTOS|STV|TH|TRA|UCH|UFC|YBO)/.*"],
@@ -55,10 +55,10 @@ class Api
     if(!empty($coin)) {
       $params = array();
       $params['blacklist'] = ["$coin/$stake"];
-      return $this->call($api_ip, 'POST', 'blacklist', $params);  
+      return $this->call('POST', 'blacklist', $params);  
     } else {
       
-      return $this->call($api_ip, 'GET', 'blacklist');  
+      return $this->call('GET', 'blacklist');  
     }
   }
 
@@ -106,23 +106,23 @@ class Api
     return $res->getBody();
   }
 
-  function call_post($api_ip, $command)
+  function call_post($command)
   {
-    return $this->call($api_ip, 'POST', $command);
+    return $this->call('POST', $command);
   }
 
-  function cancel_open_order($api_ip, $trade_id=0)
+  function cancel_open_order($trade_id=0)
   {
-    return $this->call($api_ip, 'DELETE', "trades/$trade_id/open-order");
+    return $this->call('DELETE', "trades/$trade_id/open-order");
   }
 
-  function count($api_ip)
+  function count()
   {
     // {"current":0,"max":0,"total_stake":0.0}
-    return $this->call($api_ip, 'GET', 'count');
+    return $this->call('GET', 'count');
   }
   
-  function daily($api_ip, $days=7)
+  function daily($days=7)
   {
     // {
     //   "data":[
@@ -186,11 +186,11 @@ class Api
     //   "fiat_display_currency":"USD",
     //   "stake_currency":"USDT"
     // }
-    return $this->call($api_ip, 'GET', 'daily', array('timescale'=> $days));
+    return $this->call('GET', 'daily', array('timescale'=> $days));
   }
 
   // Not working
-  function delete_blacklist($api_ip='', $coin='', $stake='.*')
+  function delete_blacklist($coin='', $stake='.*')
   {
     // {
     //  "blacklist":[".*(_PREMIUM|BEAR|BULL|DOWN|HALF|HEDGE|UP|[1235][SL]|2021)/.*",".*(USDT_|USDT-).*","(AUD|BRZ|CAD|CHF|EUR|GBP|HKD|IDRT|JPY|NGN|RUB|SGD|TRY|UAH|USD|ZAR)/.*","(BUSD|CUSD|CUSDT|DAI|PAX|PAXG|SUSD|TUSD|USDC|USDN|USDP|USDT|UST|VAI|USDD|USDJ)/.*","(ACM|AFA|ALA|ALL|ALPINE|APL|ASR|ATM|BAR|CAI|CITY|FOR|GAL|GOZ|IBFK|JUV|LAZIO|LEG|LOCK-1|NAVI|NMR|NOV|OG|PFL|PORTO|PSG|ROUSH|SANTOS|STV|TH|TRA|UCH|UFC|YBO)/.*"],
@@ -203,19 +203,19 @@ class Api
       $params = array();
       $params['pairs_to_delete'] = ["$coin/$stake"];
 
-      return $this->call($api_ip, 'DELETE', 'blacklist', $params);  
+      return $this->call('DELETE', 'blacklist', $params);  
     } else {
       
       return "Please provide pair(s) to be removed from blacklist.";  
     }
   }
 
-  function delete_lock($api_ip, $lockid=0)
+  function delete_lock($lockid=0)
   {
-    return $this->call($api_ip, 'DELETE', "locks/$lockid");
+    return $this->call('DELETE', "locks/$lockid");
   }
 
-  function delete_lock_pair($api_ip, $coin='', $stake='', $lockid=0)
+  function delete_lock_pair($coin='', $stake='', $lockid=0)
   {
     $params = array();
     if(!empty($coin)) {
@@ -226,16 +226,16 @@ class Api
       $params['lockid'] = intval($lockid);
     }
 
-    return $this->call($api_ip, 'POST', "locks/delete", $params);
+    return $this->call('POST', "locks/delete", $params);
   }
 
-  function delete_trade($api_ip, $trade_id=0)
+  function delete_trade($trade_id=0)
   {
     // {"cancel_order_count":0,"result":"success","result_msg":"Deleted trade 6. Closed 0 open orders.","trade_id":6}
-    return $this->call($api_ip, 'DELETE', "trades/$trade_id");
+    return $this->call('DELETE', "trades/$trade_id");
   }
 
-  function forceenter($api_ip='', $coin='', $stake='', $direction='long', $rate=0)
+  function forceenter($coin='', $stake='', $direction='long', $rate=0)
   {
     // {
     //   "trade_id":6,
@@ -320,37 +320,37 @@ class Api
       if($rate > 0){
         $params['price'] = $rate;
       }
-      return $this->call($api_ip, 'POST', 'forceenter', $params);  
+      return $this->call('POST', 'forceenter', $params);  
     }
     
   }
 
-  function forceexit($api_ip, $trade_id='')
+  function forceexit($trade_id='')
   {
     // {"result":"Created sell orders for all open trades."}
     $params = array();
     $params['tradeid'] = empty($trade_id)?"all":$trade_id;
-    return $this->call($api_ip, 'POST', 'forceexit', $params);
+    return $this->call('POST', 'forceexit', $params);
   }
 
-  function get_strategy($api_ip, $strategy='')
+  function get_strategy($strategy='')
   {
     if(!empty($strategy)) {
-      return $this->call($api_ip, 'GET', "strategy/$strategy");  
+      return $this->call('GET', "strategy/$strategy");  
     } else {
       return "Please input strategy.";
     }
     
   }
 
-  function health($api_ip)
+  function health()
   {
     // {"last_process":"2023-03-24T15:11:49.163613+00:00","last_process_ts":1679670709}
-    return $this->call($api_ip, 'GET', 'health');
+    return $this->call('GET', 'health');
   }
 
   // not working
-  function list_available_pairs($api_ip, $timeframe='', $stake='', $candle_type='')
+  function list_available_pairs($timeframe='', $stake='', $candle_type='')
   {
     $params=array();
     if(!empty($timeframe)) {
@@ -364,40 +364,40 @@ class Api
     if(!empty($candle_type)) {
       $params['candletype'] = $candle_type;
     }
-    return $this->call($api_ip, 'GET', 'available_pairs', $params);  
+    return $this->call('GET', 'available_pairs', $params);  
     
   }
 
-  function list_freqaimodels($api_ip)
+  function list_freqaimodels()
   {
     // {"freqaimodels":[]}
-    return $this->call($api_ip, 'GET', 'freqaimodels');  
+    return $this->call('GET', 'freqaimodels');  
     
   }
 
-  function list_strategies($api_ip)
+  function list_strategies()
   {
     // {"strategies":["ADXMomentum","ADXMomentumHO","ASDTSRockwellTrading","AdxSmas","AlphaTrend","Apollo11","AverageStrategy","AwesomeMacd","BBRSITV","BBRSITV","BBRSITV","BBRSITV1","BBRSITV2","BBRSITV3","BBRSITV4","BBRSITV5","BBRSITV5_TSL3D","BBRSITV_15m","BBRSITV_1a","BBRSITV_1b","BBRSITV_1c","BBRSITV_1d","BBRSITV_1e"]}
-    return $this->call($api_ip, 'GET', 'strategies');  
+    return $this->call('GET', 'strategies');  
     
   }
 
   function locks($api_ip='')
   {
     // {"lock_count":0,"locks":[]}
-    return $this->call($api_ip, 'GET', 'locks');  
+    return $this->call('GET', 'locks');  
   }
 
-  function logs($api_ip, $limit=0)
+  function logs($limit=0)
   {
     $params = array();
     if(intval($limit) > 0) {
       $params['limit'] = intval($limit);
     }
-    return $this->call($api_ip, 'GET', 'logs', $params);
+    return $this->call('GET', 'logs', $params);
   }
 
-  function monthly($api_ip, $months=7)
+  function monthly($months=7)
   {
     // {
     //   "data":[
@@ -419,10 +419,10 @@ class Api
     //   "fiat_display_currency":"USD",
     //   "stake_currency":"BUSD"
     // }
-    return $this->call($api_ip, 'GET', 'monthly', array('timescale'=> $months));
+    return $this->call('GET', 'monthly', array('timescale'=> $months));
   }
 
-  function pair_candles($api_ip, $coin='', $stake='', $timeframe='', $limit=0)
+  function pair_candles($coin='', $stake='', $timeframe='', $limit=0)
   {
     // {
     // "strategy":"Cenderawasih_30m_prod2",
@@ -452,14 +452,14 @@ class Api
       if(intval($limit) > 0) {
         $params['limit'] = intval($limit);
       }
-      return $this->call($api_ip, 'GET', 'pair_candles', $params);  
+      return $this->call('GET', 'pair_candles', $params);  
     } else {
       return "Please input coin, stake, and timeframe";
     }
     
   }
 
-  function pair_history($api_ip, $coin='', $stake='', $timeframe='', $timerange='', $strategy='')
+  function pair_history($coin='', $stake='', $timeframe='', $timerange='', $strategy='')
   {
     if(!empty($coin) and !empty($stake) and !empty($timeframe) and !empty($timerange) and !empty($strategy)) {
       $params = array();
@@ -467,14 +467,14 @@ class Api
       $params['timeframe'] = $timeframe;
       $params['timerange'] = $timerange;
       $params['strategy'] = $strategy;
-      return $this->call($api_ip, 'GET', 'pair_history', $params);  
+      return $this->call('GET', 'pair_history', $params);  
     } else {
       return "Please input coin, stake, timeframe, timerange, and strategy";
     }
     
   }
 
-  function performance($api_ip)
+  function performance()
   {
     // [
     //   {
@@ -500,12 +500,12 @@ class Api
     //     "count":1
     //   }
     // ]
-    return $this->call($api_ip, 'GET', 'performance');
+    return $this->call('GET', 'performance');
   }
 
-  function ping($api_ip){
+  function ping(){
     // {"status": "pong"}
-    return $this->call($api_ip, 'GET', 'ping');
+    return $this->call('GET', 'ping');
   }
 
   function profit($days=0)
@@ -556,9 +556,9 @@ class Api
     return $this->call('GET', 'profit', $params);
   }
 
-  function reload_config($api_ip)
+  function reload_config()
   {
-    return $this->call($api_ip, 'POST', 'reload_config');
+    return $this->call('POST', 'reload_config');
   }
 
   function show_config()
@@ -602,13 +602,13 @@ class Api
     return $this->call('GET', 'show_config');
   }
 
-  function start($api_ip)
+  function start()
   {
     // {"status":"starting trader ..."}
-    return $this->call($api_ip, 'POST', 'start');
+    return $this->call('POST', 'start');
   }
 
-  function stats($api_ip)
+  function stats()
   {
     // {
     //   "exit_reasons":{
@@ -629,7 +629,7 @@ class Api
     //     "losses":null
     //   }
     // }
-    return $this->call($api_ip, 'GET', 'stats');
+    return $this->call('GET', 'stats');
   }
 
   function status()
@@ -776,31 +776,31 @@ class Api
     return $this->call('GET', 'status');
   }
 
-  function stop($api_ip)
+  function stop()
   {
     // {"status":"stopping trader ..."}
-    return $this->call($api_ip, 'POST', 'stop');
+    return $this->call('POST', 'stop');
   }
 
-  function stopbuy($api_ip)
+  function stopbuy()
   {
     // {"status":"No more entries will occur from now. Run /reload_config to reset."}
-    return $this->call($api_ip, 'POST', 'stopbuy');
+    return $this->call('POST', 'stopbuy');
   }
 
-  function stopentry($api_ip)
+  function stopentry()
   {
     // {"status":"No more entries will occur from now. Run /reload_config to reset."}
-    return $this->call($api_ip, 'POST', 'stopentry');
+    return $this->call('POST', 'stopentry');
   }
 
-  function sysinfo($api_ip)
+  function sysinfo()
   {
     // {"cpu_pct":[9.1,1.0,11.9,1.0],"ram_pct":34.8}
-    return $this->call($api_ip, 'GET', 'sysinfo');
+    return $this->call('GET', 'sysinfo');
   }
 
-  function trade($api_ip, $trade_id=0)
+  function trade($trade_id=0)
   {
     // {
     //   "trade_id":6,
@@ -904,7 +904,7 @@ class Api
     //   "open_order":null
     // }
 
-    return $this->call($api_ip, 'GET', "trade/$trade_id");
+    return $this->call('GET', "trade/$trade_id");
   }
 
   function trades($limit=NULL, $offset=NULL, $order_by_id = False)
@@ -1032,12 +1032,12 @@ class Api
     return $this->call('GET', 'trades', $params);
   }
 
-  function version($api_ip){
+  function version(){
     // {"version":"2023.3.dev"}
-    return $this->call($api_ip, 'GET', 'version');
+    return $this->call('GET', 'version');
   }
 
-  function weekly($api_ip, $weeks=7)
+  function weekly($weeks=7)
   {
     // {
     //   "data":[
@@ -1101,13 +1101,13 @@ class Api
     //   "fiat_display_currency":"USD",
     //   "stake_currency":"USDT"
     // }
-    return $this->call($api_ip, 'GET', 'weekly', array('timescale'=> $weeks));
+    return $this->call('GET', 'weekly', array('timescale'=> $weeks));
   }
 
   function whitelist($api_ip='')
   {
     // {"whitelist":["BTC/BUSD","ETH/BUSD","XRP/BUSD","SOL/BUSD","CFX/BUSD","BNB/BUSD","AGIX/BUSD","LTC/BUSD","MATIC/BUSD","MASK/BUSD","FTM/BUSD","ADA/BUSD","APT/BUSD","SHIB/BUSD","OP/BUSD","LUNC/BUSD","MAGIC/BUSD","LINK/BUSD","FIL/BUSD","TRX/BUSD","AVAX/BUSD","GALA/BUSD","STX/BUSD","LUNA/BUSD","LDO/BUSD","JOE/BUSD","HOOK/BUSD","ATOM/BUSD","GFT/BUSD","MINA/BUSD","DYDX/BUSD","NEAR/BUSD","CKB/BUSD","DOT/BUSD","KEY/BUSD","FTT/BUSD","BNX/BUSD","APE/BUSD","GMT/BUSD","LOOM/BUSD","ETC/BUSD","USTC/BUSD","FET/BUSD","UNI/BUSD","SNM/BUSD","RUNE/BUSD","SRM/BUSD","GRT/BUSD","MANA/BUSD","RNDR/BUSD"],"length":50,"method":["VolumePairList","AgeFilter"]}
     
-    return $this->call($api_ip, 'GET', 'whitelist');  
+    return $this->call('GET', 'whitelist');  
   }
 }
