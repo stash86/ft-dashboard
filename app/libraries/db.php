@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/../vendor/autoload.php');
+require_once(__DIR__.'/../../vendor/autoload.php');
 
 $host = getenv('DB_HOST') ?: '127.0.0.1';
 $user = getenv('DB_USER') ?: '';

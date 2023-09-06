@@ -1,10 +1,10 @@
 <?php
 require_once(__DIR__.'/../libraries/api.php');
-require_once(__DIR__.'/../vendor/autoload.php');
+require_once(__DIR__.'/../../vendor/autoload.php');
 require_once(__DIR__.'/../libraries/date_helper.php');
 require_once(__DIR__.'/../libraries/db.php');
 
-$path = __DIR__.'/../data/config.json';
+$path = '../../bots.json';
 $jsonString = file_get_contents($path);
 //$jsonString = utf8_encode($jsonString);
 $jsonData = json_decode($jsonString, true);
