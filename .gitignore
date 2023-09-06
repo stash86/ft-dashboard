@@ -1,4 +1,4 @@
 vendor
 mongodb
-data/config.json
+bots.json
 .env
