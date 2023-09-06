@@ -52,10 +52,11 @@ services:
     restart: "unless-stopped"
     networks:
       - app
+    user: 1000:1000
     ports:
       - "27017:27017"
     volumes:
-      - ./mongodb:/data/db
+      - ./data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
