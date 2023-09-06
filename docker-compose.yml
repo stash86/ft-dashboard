@@ -53,8 +53,6 @@ services:
     networks:
       - app
     user: 1000:1000
-    ports:
-      - "27017:27017"
     volumes:
       - ./data:/data/db
     environment:
