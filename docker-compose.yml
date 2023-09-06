@@ -1,0 +1,65 @@
+services:
+  nginx:
+    image: nginx:latest
+    restart: "unless-stopped"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/app
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app
+
+  php:
+    build:
+      context: ./php
+      dockerfile: php.Dockerfile
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - CRON_MINUTES=${CRON_MINUTES}
+    volumes:
+      - ./:/app
+    networks:
+      - app
+
+  cron:
+    build:
+      context: ./cron
+      dockerfile: cron.Dockerfile
+      args:
+        CRON_MINUTES: ${CRON_MINUTES}
+    restart: "unless-stopped"
+    networks:
+      - app
+
+  composer:
+    image: composer
+    volumes:
+      - ./:/app
+    working_dir: /app
+    networks:
+      - app
+    command: composer install --ignore-platform-req=ext-mongodb
+    user: 1000:1000
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: "unless-stopped"
+    networks:
+      - app
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
+
+networks:
+  app:
+    driver: bridge

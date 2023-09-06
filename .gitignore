@@ -1,0 +1,4 @@
+vendor
+mongodb
+data/config.json
+.env
