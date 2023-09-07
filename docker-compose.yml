@@ -17,6 +17,7 @@ services:
       dockerfile: php.Dockerfile
       args:
         UID: ${UID}
+        GID: ${GID}
     environment:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
@@ -45,7 +46,7 @@ services:
     restart: "unless-stopped"
     networks:
       - app
-    user: "${UID}:${UID}"
+    user: "${UID}:${GID}"
     volumes:
       - ./data:/data/db
     environment:

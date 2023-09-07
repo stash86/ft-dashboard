@@ -10,12 +10,10 @@ RUN pecl install zip mongodb \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ARG UID=1000
+ARG GID=1000
 
-RUN groupadd -g ${UID} www
+RUN groupadd -g ${GID} www
 RUN useradd -u ${UID} -ms /bin/bash -g www www
-
-COPY . /app
-COPY --chown=www:www . /app
 
 USER www
 
