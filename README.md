@@ -1,14 +1,19 @@
 # How to install
 ## Requirements
-I won't provide instructions on how to install these.
+You will need to install Tailscale manually and make sure all your vpses have been connected in the tailscale network.
+
+For the requirements below, you can install it yourself if you want to use this dashboard without docker, otherwise these requirements has been provided in the docker-compose.
 * Web server (Apache2, nginx, or others)
 * PHP 8.2
 * Mongodb + Mongodb php driver
-* Tailscale
 
-## How to setup this web
-1. Copy the config.json.example and put the talscale ip, username, and password for all the bots
-`cp data/config.json.example data/config.json`
+
+## How to setup this dashboard
+1. Copy the bots.json.example and put the talscale ip, username, and password for all the bots
+`cp bots.json.example bots.json`
+
+2. Copy the .env.example 
+`cp .env.example .env`
 
 2. Install some required libraries through composer 
 composer install
