@@ -6,6 +6,7 @@ For the requirements below, you can install it yourself if you want to use this 
 * Web server (Apache2, nginx, or others)
 * PHP 8.2
 * Mongodb + Mongodb php driver
+* Composer
 
 
 ## How to setup this dashboard
@@ -38,18 +39,20 @@ sudo chmod -R 777 /var/www/ft-dashboard
 `cp .env.example .env`
 
 ### Docker
-1. docker-compose build
-2. docker-compose run --rm php composer install
-3. docker-compose up -d
+```
+docker-compose build
+docker-compose run --rm php composer install
+docker-compose up -d
+```
 
-## Non-docker
-2. Install some required libraries through composer 
-composer install
+### Non-docker
+1. Install some required libraries through composer
+`composer install`
 
-3. Setup cronjob to fetch the data from APIs regularly
+2. Setup cronjob to fetch the data from APIs regularly `crontab -e`
 `*/10 * * * * /usr/bin/php <address to the folder>/scripts/fetch_data.php`
 The command above will fetch the data every 10 minutes. Change it to suit your preference.
 
-4. Go to scripts/fetch_data.php, find this line `if ($interval >= 600)` and change the value (in seconds) to match the time you set at your cronjob
+3. Go to scripts/fetch_data.php, find this line `if ($interval >= 600)` and change the value (in seconds) to match the time you set at your cronjob
 
-5. Customize the page yourself to suit your preference, or you can just use it as it is.
+4. Customize the page yourself to suit your preference, or you can just use it as it is.
