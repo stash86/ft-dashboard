@@ -13,7 +13,7 @@ For the requirements below, you can install it yourself if you want to use this 
 1. Add your current user to www-data group if you haven't
 `sudo usermod -a -G www-data $USER`
 
-2. Logout and login if you done step 3
+2. Logout and login if you done step 2
 
 3. Go to /var/www/ folder. Create it if it doesn't exist yet using this steps
 ```
