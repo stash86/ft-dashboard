@@ -9,34 +9,38 @@ For the requirements below, you can install it yourself if you want to use this 
 
 
 ## How to setup this dashboard
-1 Add your current user to www-data group if you haven't
+1. Add your current user to www-data group if you haven't
 `sudo usermod -a -G www-data $USER`
 
-2 Logout and login if you done step 3
+2. Logout and login if you done step 3
 
-3 Go to /var/www/ folder. Create it if it doesn't exist yet using this steps
- * cd /var
- * sudo mkdir www
- * sudo chown root:root /var/www
- * sudo chmod 755 /var/www/
- * cd www
+3. Go to /var/www/ folder. Create it if it doesn't exist yet using this steps
+```
+cd /var
+sudo mkdir www
+sudo chown root:root /var/www
+sudo chmod 755 /var/www/
+cd www
+```
 
-4 Clone this project `sudo git clone https://github.com/stash86/ft-dashboard`
+4. Clone this project `sudo git clone https://github.com/stash86/ft-dashboard`
 
-5 Give appropriate permissions
- * sudo chown -R $USER:www-data /var/www/ft-dashboard
- * sudo chmod -R 777 /var/www/ft-dashboard
+5. Give appropriate permissions
+```
+sudo chown -R $USER:www-data /var/www/ft-dashboard
+sudo chmod -R 777 /var/www/ft-dashboard
+```
 
-6 Copy the bots.json.example into bots.json and put the talscale ip, username, and password for all the bots
+6. Copy the bots.json.example into bots.json and put the talscale ip, username, and password for all the bots
 `cp bots.json.example bots.json`
 
-7 Copy the .env.example into .env and put change relevant info (if any)
+7. Copy the .env.example into .env and put change relevant info (if any)
 `cp .env.example .env`
 
 ### Docker
-1 docker-compose build
-2 docker-compose run --rm php composer install
-3 docker-compose up -d
+1. docker-compose build
+2. docker-compose run --rm php composer install
+3. docker-compose up -d
 
 ## Non-docker
 2. Install some required libraries through composer 
