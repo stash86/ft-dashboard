@@ -1,19 +1,15 @@
 <?php
 require_once('libraries/api.php');
-require_once('vendor/autoload.php');
+require_once('../vendor/autoload.php');
 require_once('libraries/date_helper.php');
+require_once('libraries/db.php');
 
-$path = 'data/config.json';
+$path = '../bots.json';
 $jsonString = file_get_contents($path);
-$jsonString = utf8_encode($jsonString);
+//$jsonString = utf8_encode($jsonString);
 $jsonData = json_decode($jsonString, true);
 
-$client = new MongoDB\Client();
-$databaseName = "myDatabase";
-$collectionName = "myCollection";
-$database = $client->selectDatabase($databaseName);
-$collection = $database->selectCollection($collectionName);
-
+$current_time = new DateTime();
 $data = [];
 
 for($i=0; $i < count($jsonData); $i++){

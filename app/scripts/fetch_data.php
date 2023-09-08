@@ -1,18 +1,13 @@
 <?php
 require_once(__DIR__.'/../libraries/api.php');
-require_once(__DIR__.'/../vendor/autoload.php');
+require_once(__DIR__.'/../../vendor/autoload.php');
 require_once(__DIR__.'/../libraries/date_helper.php');
+require_once(__DIR__.'/../libraries/db.php');
 
-$path = __DIR__.'/../data/config.json';
+$path = '../../bots.json';
 $jsonString = file_get_contents($path);
-$jsonString = utf8_encode($jsonString);
+//$jsonString = utf8_encode($jsonString);
 $jsonData = json_decode($jsonString, true);
-
-$client = new MongoDB\Client();
-$databaseName = "myDatabase";
-$collectionName = "myCollection";
-$database = $client->selectDatabase($databaseName);
-$collection = $database->selectCollection($collectionName);
 $current_time = new DateTime();
 
 $ip_to_check = $jsonData[0]['ip_address'];
@@ -23,7 +18,9 @@ if (! is_null($data1)) {
 	echo "current time is ".$current_time->format('Y-m-d H:i:s').", stored time is ".$stored_time->format('Y-m-d H:i:s')."\n";
 	$interval = $current_time->getTimestamp() - $stored_time->getTimestamp();
 	echo "difference is ".$interval." seconds\n";
-	if ($interval >= 600) {
+	$cron_interval = (int)getenv('CRON_MINUTES') ?: 10;
+	echo "cron interval is " . $cron_interval . " minutes\n";
+	if ($interval >= $cron_interval * 60) {
 		$fetch_new = True;
 	} else {
 		echo "use cache\n";

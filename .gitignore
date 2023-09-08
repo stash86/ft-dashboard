@@ -1,0 +1,4 @@
+vendor
+mongodb
+bots.json
+.env
