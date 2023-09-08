@@ -59,11 +59,9 @@ The command above will fetch the data every 10 minutes. Change it to suit your p
 
 
 ## Affiliate links
-Vultr (you get $100 credit that expires in 14 days) https://www.vultr.com/?ref=8944192-8H
+Vultr for server and bot hosting (you get $100 credit that expires in 14 days) https://www.vultr.com/?ref=8944192-8H
 
 Binance.com (Non-US citizen) https://accounts.binance.com/en/register?ref=143744527
-
-Kucoin https://www.kucoin.com/ucenter/signup?rcode=r3BWY2T
 
 
 ## Donation
