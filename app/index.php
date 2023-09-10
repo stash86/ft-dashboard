@@ -275,8 +275,8 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                         <?php
                                         $date_now = new DateTime();
                                         for($i = 0; $i < count($value['status']); $i++) {
-                                            $min_profit = round(floatval($value['status'][$i]['min_profit']) * 100, 3);
-                                            $max_profit = round(floatval($value['status'][$i]['max_profit']) * 100, 3);
+                                            $min_profit = round((floatval($value['status'][$i]['open_rate'])-floatval($value['status'][$i]['min_rate']))/floatval($value['status'][$i]['open_rate']) * 100, 3);
+                                            $max_profit = round((floatval($value['status'][$i]['max_rate'])-floatval($value['status'][$i]['open_rate']))/floatval($value['status'][$i]['open_rate']) * 100, 3);
 
                                             $open_date = new DateTime($value['status'][$i]['open_date']);
                                             // $close_date = new DateTime($value['status'][$i]['close_date']);
