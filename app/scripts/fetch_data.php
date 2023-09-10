@@ -79,8 +79,11 @@ if ($fetch_new) {
 
 		if(count($status) > 0) {
             $open_trades_profit = 0;
-            foreach ($status as $key => $value) {
-                $open_trades_profit += ($value['profit_abs'] + $value['realized_profit']);
+            for($i=0; $i < count($status); $i++){
+            	$open_rate = $status[$i]['open_rate'];
+                $open_trades_profit += ($status[$i]['profit_abs'] + $status[$i]['realized_profit']);
+                $status[$i]['min_profit'] = ($status[$i]['min_rate'] - $open_rate) / $open_rate;
+                $status[$i]['max_profit'] = ($status[$i]['max_rate'] - $open_rate) / $open_rate;
             }
             $date_now = new DateTime();
             $open_profit_pct = $total_profit + ($open_trades_profit * 100 / $start_balance);
