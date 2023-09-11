@@ -42,16 +42,15 @@ The command above will fetch the data every 10 minutes. Change it to suit your p
 4. Customize the page yourself to suit your preference, or you can just use it as it is.
 
 
-## Affiliate links
-Vultr for server and bot hosting (you get $100 credit that expires in 14 days) https://www.vultr.com/?ref=8944192-8H
-
-Binance.com (Non-US citizen) https://accounts.binance.com/en/register?ref=143744527
+# Links
+## Affiliate Links
+* Vultr for server and bot hosting (you get $100 credit that expires in 14 days) https://www.vultr.com/?ref=8944192-8H
+* Binance.com (Non-US citizen) https://accounts.binance.com/en/register?ref=143744527
 
 
 ## Donation
-Github sponsor - https://github.com/sponsors/stash86/
-
-Patreon (for donation only, no extra perks) - https://patreon.com/stash86
+* Github sponsor - https://github.com/sponsors/stash86/
+* Patreon (for donation only, no extra perks) - https://patreon.com/stash86
 
 ## Crypto
 * BTC: 1FghqtgGLpD9F21BNDMje4iyj4cSzVPZPb
