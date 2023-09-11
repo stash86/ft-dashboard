@@ -7,7 +7,8 @@ services:
       - "443:443"
     volumes:
       - ./:/app
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./certbot/www:/var/www/certbot/:ro
     networks:
       - app
 
@@ -52,7 +53,11 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
-
+      
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
 networks:
   app:
     driver: bridge

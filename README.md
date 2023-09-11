@@ -10,32 +10,14 @@ For the requirements below, you can install it yourself if you want to use this 
 
 
 ## How to setup this dashboard
-1. Add your current user to www-data group if you haven't
-`sudo usermod -a -G www-data $USER`
+1. Clone this project `sudo git clone https://github.com/stash86/ft-dashboard`
 
-2. Logout and login if you done step 2
-
-3. Go to /var/www/ folder. Create it if it doesn't exist yet using this steps
-```
-cd /var
-sudo mkdir www
-sudo chown root:root /var/www
-sudo chmod 755 /var/www/
-cd www
-```
-
-4. Clone this project `sudo git clone https://github.com/stash86/ft-dashboard`
-
-5. Give appropriate permissions
-```
-sudo chown -R $USER:www-data /var/www/ft-dashboard
-sudo chmod -R 777 /var/www/ft-dashboard
-```
-
-6. Copy the bots.json.example into bots.json and put the talscale ip, username, and password for all the bots
+2. Copy the bots.json.example into bots.json and put the talscale ip, username, and password for all the bots
 `cp bots.json.example bots.json`
 
-7. Copy the .env.example into .env and put change relevant info (if any)
+3. Type `id` to get uid and gid that you gonna use on next step
+
+4. Copy the .env.example into .env and put change relevant info (if any)
 `cp .env.example .env`
 
 ### Docker
