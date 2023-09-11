@@ -3,4 +3,3 @@ mongodb
 bots.json
 .env
 composer.lock
-default.conf
