@@ -2,3 +2,4 @@ vendor
 mongodb
 bots.json
 .env
+composer.lock
