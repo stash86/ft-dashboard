@@ -6,6 +6,7 @@ Skip this step if you think you have done them previously
 * [Create sudo-enabled non-root user](https://botacademy.ddns.net/2023/09/13/how-to-create-new-sudo-enabled-user/)
 * [Install PHP8.2](https://botacademy.ddns.net/2023/09/13/install-php8-2-and-modules-on-ubuntu/). You only need to install fpm and mongodb modules if you are doing docker. Otherwise, it's better to install all the common modules.
 * [Install docker-compose](https://botacademy.ddns.net/2023/09/13/how-to-install-docker-compose-on-ubuntu/)
+* Install Tailscale
 
 ## Setup the dashboard
 1. Clone this project `sudo git clone https://github.com/stash86/ft-dashboard`
