@@ -1,17 +1,13 @@
 Live website http://ft-dashboard.ddns.net/
 
 # How to install
-## Requirements
-You will need to install Tailscale manually and make sure all your vpses have been connected in the tailscale network.
+## Initial setup
+Skip this step if you think you have done them previously
+* [Create sudo-enabled non-root user](https://botacademy.ddns.net/2023/09/13/how-to-create-new-sudo-enabled-user/)
+* [Install PHP8.2](https://botacademy.ddns.net/2023/09/13/install-php8-2-and-modules-on-ubuntu/). You only need to install fpm and mongodb modules if you are doing docker. Otherwise, it's better to install all the common modules.
+* [Install docker-compose](https://botacademy.ddns.net/2023/09/13/how-to-install-docker-compose-on-ubuntu/)
 
-For the requirements below, you can install it yourself if you want to use this dashboard without docker, otherwise these requirements has been provided in the docker-compose.
-* Web server (Apache2, nginx, or others)
-* PHP 8.2
-* Mongodb + Mongodb php driver
-* Composer
-
-
-## How to setup this dashboard
+## Setup the dashboard
 1. Clone this project `sudo git clone https://github.com/stash86/ft-dashboard`
 
 2. Copy the bots.json.example into bots.json and put the talscale ip, username, and password for all the bots
@@ -22,7 +18,7 @@ For the requirements below, you can install it yourself if you want to use this 
 4. Copy the .env.example into .env and put change relevant info (especially uid and gid)
 `cp .env.example .env`
 
-### Docker
+### Docker installation
 ```
 docker-compose build
 docker-compose run --rm php composer install
@@ -41,6 +37,10 @@ The command above will fetch the data every 10 minutes. Change it to suit your p
 
 4. Customize the page yourself to suit your preference, or you can just use it as it is.
 
+
+## Troubleshooting
+* `Error response from daemon: driver failed programming external connectivity on endpoint ft-dashboard-nginx-1 (5715ad4646ad5d120e65509981a1c790b0a7c98eded19a3f6752d759ae9c67e2): Error starting userland proxy: listen tcp4 0.0.0.0:80: bind: address already in use`
+Means port 80 is being used right now. Try `sudo lsof -i:80` to see which services using port 80. Tailscale will be one of them, but see whether apache2 is active as well. If it does and you still want to use the docker route (which will use nginx), either stop or remove apache2.
 
 # Links
 ## Affiliate Links
