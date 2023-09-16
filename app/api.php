@@ -11,7 +11,7 @@ $enabled = $_ENV['API'] ?: false;
 
 echo $_ENV['API'].'</br>';
 
-if ($_ENV['API'] == true) {
+if ($_ENV['API'] == 'true') {
     echo "a";
 } else {
     echo "b";
