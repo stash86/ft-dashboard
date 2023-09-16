@@ -9,11 +9,7 @@ $allowed_response = ['status', 'trades', 'profit'];
 $result = [];
 $enabled = boolval($_ENV['API']) ?: false;
 
-if ($enabled) {
-    echo "true";
-} else {
-    echo "false";
-}
+echo $_ENV['API'];
 
 // if (isset($_GET['response']) && ($_GET['response']!="") && isset($_GET['bot_id']) && ($_GET['bot_id']!="") && $enabled) {
 // 	// include('db.php');
