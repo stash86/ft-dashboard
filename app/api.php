@@ -4,7 +4,6 @@ require_once('libraries/db.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
-$dotenv->required('API')->isBoolean();
 
 $allowed_response = ['status', 'trades', 'profit'];
 $result = [];
@@ -12,7 +11,7 @@ $enabled = $_ENV['API'] ?: false;
 
 echo $_ENV['API'].'</br>';
 
-if ($_ENV['API']) {
+if ($_ENV['API'] == true) {
     echo "a";
 } else {
     echo "b";
