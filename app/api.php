@@ -15,7 +15,7 @@ if (isset($_GET['response']) && ($_GET['response']!="") && isset($_GET['bot_id']
         $jsonData = json_decode($jsonString, true);
 
         if(isset($jsonData[$bot_id])) {
-            $ip_to_check = $jsonData[$bot_id]['ip_address'];
+            $ip_to_check = $jsonData[intval($bot_id)-1]['ip_address'];
             $data1 = $collection->findOne(['_id' => $ip_to_check]);
 
             if (!is_null($data1)) {
