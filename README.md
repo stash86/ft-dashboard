@@ -51,10 +51,18 @@ Note that `bot_id` start from 1, and it follow the order of your input inside `b
 
 
 # How to update
-* git pull
-* docker-compose down
-* docker-compose run --rm php composer update
-* docker-compose up -d
+`git pull` followed by
+
+## Docker
+```
+docker-compose down
+docker-compose run --rm php composer update
+docker-compose up -d
+```
+
+## Non-docker
+`composer update`
+
 
 # Links
 ## Affiliate Links
