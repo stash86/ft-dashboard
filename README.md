@@ -43,6 +43,10 @@ The command above will fetch the data every 10 minutes. Change it to suit your p
 * `Error response from daemon: driver failed programming external connectivity on endpoint ft-dashboard-nginx-1 (5715ad4646ad5d120e65509981a1c790b0a7c98eded19a3f6752d759ae9c67e2): Error starting userland proxy: listen tcp4 0.0.0.0:80: bind: address already in use`
 Means port 80 is being used right now. Try `sudo lsof -i:80` to see which services using port 80. Tailscale will be one of them, but see whether apache2 is active as well. If it does and you still want to use the docker route (which will use nginx), either stop or remove apache2.
 
+
+# API Endpoints
+You can activate API endpoints by setting `API=true` in your `.env` file. The supported responses for now are `profit` for performance summary, `trades` for closed trades, and `status` for open trades.
+
 # Links
 ## Affiliate Links
 * Vultr for server and bot hosting (you get $100 credit that expires in 14 days) https://www.vultr.com/?ref=8944192-8H
