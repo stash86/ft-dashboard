@@ -7,7 +7,7 @@ $dotenv->load();
 
 $allowed_response = ['status', 'trades', 'profit'];
 $result = [];
-$enabled = boolval($_ENV['API']) ?: false;
+$enabled = $_ENV['API'] ?: false;
 
 echo $_ENV['API'].'</br>';
 
