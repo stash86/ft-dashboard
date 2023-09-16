@@ -50,6 +50,12 @@ The link to access the api is `http://<your ip or domain>/api.php?response=statu
 Note that `bot_id` start from 1, and it follow the order of your input inside `bots.json`
 
 
+# How to update
+* git pull
+* docker-compose down
+* docker-compose run --rm php composer update
+* docker-compose up -d
+
 # Links
 ## Affiliate Links
 * Vultr for server and bot hosting (you get $100 credit that expires in 14 days) https://www.vultr.com/?ref=8944192-8H

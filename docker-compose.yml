@@ -18,6 +18,9 @@ services:
       args:
         UID: ${UID}
         GID: ${GID}
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
     volumes:
       - ./:/app
     working_dir: /app
