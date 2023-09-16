@@ -4,8 +4,9 @@ require_once('libraries/db.php');
 
 $allowed_response = ['status', 'trades', 'profit'];
 $result = [];
+$api = boolval(getenv('API')) ?: false;
 
-if (isset($_GET['response']) && ($_GET['response']!="") && isset($_GET['bot_id']) && ($_GET['bot_id']!="")) {
+if (isset($_GET['response']) && ($_GET['response']!="") && isset($_GET['bot_id']) && ($_GET['bot_id']!="") && $api) {
 	// include('db.php');
 	$response = $_GET['response'];
     $bot_id = $_GET['bot_id'];
