@@ -2,7 +2,7 @@
 // header("Content-Type:application/json");
 // require_once('../app/api.php');	
 
-$enabled = getenv('API_ENABLED') ?: "false";
+$enabled = getenv('API') ?: false;
 if (boolval($enabled)) {
 	echo "true";
 } else {
