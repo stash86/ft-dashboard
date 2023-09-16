@@ -24,6 +24,7 @@ services:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - CRON_MINUTES=${CRON_MINUTES}
+      - API=${API}
     volumes:
       - ./:/app
     working_dir: /app
