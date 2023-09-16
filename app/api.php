@@ -2,9 +2,12 @@
 require_once('../vendor/autoload.php');
 require_once('libraries/db.php');
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
+$dotenv->load();
+
 $allowed_response = ['status', 'trades', 'profit'];
 $result = [];
-$enabled = boolval(getenv('API')) ?: false;
+$enabled = boolval($_ENV['API']) ?: false;
 
 if (isset($_GET['response']) && ($_GET['response']!="") && isset($_GET['bot_id']) && ($_GET['bot_id']!="") && $enabled) {
 	// include('db.php');

@@ -4,6 +4,9 @@ require_once(__DIR__.'/../../vendor/autoload.php');
 require_once(__DIR__.'/../libraries/date_helper.php');
 require_once(__DIR__.'/../libraries/db.php');
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
+$dotenv->load();
+
 $path = '../../bots.json';
 $jsonString = file_get_contents($path);
 //$jsonString = utf8_encode($jsonString);
@@ -18,7 +21,7 @@ if (! is_null($data1)) {
 	echo "current time is ".$current_time->format('Y-m-d H:i:s').", stored time is ".$stored_time->format('Y-m-d H:i:s')."\n";
 	$interval = $current_time->getTimestamp() - $stored_time->getTimestamp();
 	echo "difference is ".$interval." seconds\n";
-	$cron_interval = (int)getenv('CRON_MINUTES') ?: 10;
+	$cron_interval = intval($_ENV['CRON_MINUTES']) ?: 10;
 	echo "cron interval is " . $cron_interval . " minutes\n";
 	if ($interval >= $cron_interval * 60) {
 		$fetch_new = True;
