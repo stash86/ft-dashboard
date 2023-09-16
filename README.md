@@ -45,7 +45,10 @@ Means port 80 is being used right now. Try `sudo lsof -i:80` to see which servic
 
 
 # API Endpoints
-You can activate API endpoints by setting `API=true` in your `.env` file. The supported responses for now are `profit` for performance summary, `trades` for closed trades, and `status` for open trades.
+By default, the API isn't enabled. You can activate API endpoints by setting `API=true` in your `.env` file. The supported responses for now are `profit` for performance summary, `trades` for closed trades, and `status` for open trades.
+The link to access the api is `http://<your ip or domain>/api.php?response=status&bot_id=<bot_id>`
+Note that `bot_id` start from 1, and it follow the order of your input inside `bots.json`
+
 
 # Links
 ## Affiliate Links
