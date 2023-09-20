@@ -13,14 +13,14 @@ $data = [];
 
 for($i=0; $i < count($jsonData); $i++){
 	$ip_to_check = $jsonData[$i]['ip_address'];
-    echo "Check IP ".$ip_to_check."<\br>";
+    echo "Check IP ".$ip_to_check."\n";
 	$data1 = $collection->findOne(['_id' => $ip_to_check]);
 
 	if (is_null($data1)) {
         echo "No data<\br>";
 		continue;
 	} else {
-        echo "Has data<\br>";
+        echo "Has data\n";
     }
 
 	$data[$data1['strategy']] = [
@@ -32,7 +32,7 @@ for($i=0; $i < count($jsonData); $i++){
 		"config"=> $data1['config'],
 		"chart_profit_data"=> $data1['chart_profit_data']
 	];
-    echo "Strategy name".$data1['strategy']."<\br>";
+    echo "Strategy name".$data1['strategy']."\n";
 
 }
 ksort($data);
