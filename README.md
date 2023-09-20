@@ -50,6 +50,10 @@ The link to access the api is `http://<your ip or domain>/api.php?response=statu
 Note that `bot_id` start from 1, and it follow the order of your input inside `bots.json`
 
 
+# Debug
+There are several pages that are used to debug several things. To use it, you need to set `DEBUG=true` in your `.env` file. The debug scripts are located at `/public/debug` folder.
+
+
 # How to update
 `git pull` followed by
 
