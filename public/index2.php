@@ -4,9 +4,6 @@ require_once('../vendor/autoload.php');
 require_once('../app/libraries/date_helper.php');
 require_once('../app/libraries/db.php');
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
-$dotenv->load();
-
 $path = '../bots.json';
 $jsonString = file_get_contents($path);
 $jsonData = json_decode($jsonString, true);
