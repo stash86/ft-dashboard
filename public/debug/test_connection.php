@@ -8,7 +8,7 @@ $dotenv->load();
 $enabled = ($_ENV['DEBUG'] == 'true') ?: false;
 
 if($enabled) {
-    $path = '../bots.json';
+    $path = '../../bots.json';
     $jsonString = file_get_contents($path);
     $jsonData = json_decode($jsonString, true);
     $current_time = new DateTime();
