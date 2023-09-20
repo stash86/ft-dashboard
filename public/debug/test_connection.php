@@ -1,8 +1,8 @@
 <?php
-require_once('../app/libraries/api.php');
-require_once('../vendor/autoload.php');
+require_once('../../app/libraries/api.php');
+require_once('../../vendor/autoload.php');
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
 $dotenv->load();
 
 $enabled = ($_ENV['DEBUG'] == 'true') ?: false;
