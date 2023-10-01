@@ -5,7 +5,7 @@ require_once('libraries/db.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
-$allowed_response = ['status', 'trades', 'profit'];
+$allowed_response = ['strategy', 'strategy_version', 'status', 'trades', 'profit', 'chart_profit_data'];
 $result = [];
 $enabled = ($_ENV['API'] == 'true') ?: false;
 
