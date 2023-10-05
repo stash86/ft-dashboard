@@ -91,11 +91,11 @@ if($enabled) {
 
 		if(count($status) > 0) {
             $open_trades_profit = 0;
-            for($i=0; $i < count($status); $i++){
-            	$open_rate = $status[$i]['open_rate'];
-                $open_trades_profit += ($status[$i]['profit_abs'] + $status[$i]['realized_profit']);
-                $status[$i]['min_profit'] = ($status[$i]['min_rate'] - $open_rate) / $open_rate;
-                $status[$i]['max_profit'] = ($status[$i]['max_rate'] - $open_rate) / $open_rate;
+            for($j=0; $j < count($status); $j++){
+            	$open_rate = $status[$j]['open_rate'];
+                $open_trades_profit += ($status[$j]['profit_abs'] + $status[$j]['realized_profit']);
+                $status[$j]['min_profit'] = ($status[$j]['min_rate'] - $open_rate) / $open_rate;
+                $status[$j]['max_profit'] = ($status[$j]['max_rate'] - $open_rate) / $open_rate;
             }
             $date_now = new DateTime();
             $open_profit_pct = $total_profit + ($open_trades_profit * 100 / $start_balance);
