@@ -36,7 +36,7 @@ if($enabled) {
 		$profit['win_rate'] = $win_rate;
 		
 		$trades = json_decode($api->trades($trade_count), true)['trades'];
-		echo count($trades)}." trades data<br/>";
+		echo count($trades)." trades data<br/>";
 		$balance = json_decode($api->balance(), true);
 
 		$start_balance = $balance['starting_capital'];
