@@ -58,25 +58,6 @@ if ($fetch_new) {
 		$total_profit = 0;
         $total_profit_abs = 0;
         $chart_profit_data = [];
-        // for($j = (count($trades) - 1); $j >= 0; $j--){
-        // 	if (intval($trades[$j]['is_open']) == 1) {
-        // 		continue;
-        // 	}
-        //     $close_profit = (($trades[$j]['close_profit_abs'] * 100 / $start_balance) + $total_profit);
-        //     $total_profit = $close_profit;
-        //     $close_profit = round($close_profit, 3);
-
-        //     $close_profit_abs =  ($trades[$j]['close_profit_abs'] + $total_profit_abs);
-        //     $total_profit_abs = $close_profit_abs;
-        //     $closed_trades_asc[$i]['is_open'] = 0;
-
-        //     $chart_profit_data[] = [
-        //     	"close_profit"=> $close_profit,
-        //     	"close_profit_abs"=>$close_profit_abs,
-        //     	"close_date"=>$trades[$j]['close_date'],
-        //     	"is_open"=>0
-        //     ];
-        // }
 
         $time_data = [];
 
@@ -93,6 +74,16 @@ if ($fetch_new) {
         });
 
         for($j = (count($time_data) - 1); $j >= 0; $j--){
+
+        	if ($j == (count($time_data) - 1)) {
+        		$chart_profit_data[] = [
+	            	"close_profit" => 0,
+	            	"close_profit_abs" => 0,
+	            	"close_date" => $time_data[$j]['close_date'],
+	            	"is_open" => 0
+	            ];
+        	}
+        	
             $close_profit = (($time_data[$j]['close_profit_abs'] * 100 / $start_balance) + $total_profit);
             $total_profit = $close_profit;
             $close_profit = round($close_profit, 3);

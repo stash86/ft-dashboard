@@ -401,7 +401,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                 <?php
                 $count = 0;
                 foreach ($data as $key => $value) {
-                	if(count($value['chart_profit_data']) < 2) {
+                	if(count($value['chart_profit_data']) < 3) {
                 		continue;
                 	}
                 ?>
