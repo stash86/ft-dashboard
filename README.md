@@ -54,7 +54,7 @@ How often the dashboard fetch data from freqtrade bots. Default is 10
 Whether [API endpoints](#api-endpoints) being enabled or not. Default is false
 
 ### DEBUG
-Whether debug mode being enabled or not. If being enabled, users can access debug scripts located at `public/debug`. Default is false
+Whether [debug mode](#debug) being enabled or not. Default is false
 
 ### START_0
 Whether the profit chart's first point start from zero point. Default is false
@@ -70,7 +70,11 @@ Note that `bot_id` start from 1, and it follow the order of your input inside `b
 
 
 # Debug
-There are several pages that are used to debug several things. To use it, you need to set `DEBUG=true` in your `.env` file. The debug scripts are located at `/public/debug` folder.
+There are several scripts that are used to debug several aspects of the dashboard. To use it, you need to set `DEBUG=true` in your `.env` file. The debug scripts are located at `/public/debug` folder.
+
+**WARNING!!!**
+
+When you enable this, this means anyone can access those scripts as well. While the scripts won't be able to alter the dashboard, it can be subjected to some DDoS attacks. It's advisable to only enable this mode when you need it, and turn it off after you are done.
 
 
 # How to update
