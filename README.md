@@ -44,6 +44,25 @@ The command above will fetch the data every 10 minutes. Change it to suit your p
 Means port 80 is being used right now. Try `sudo lsof -i:80` to see which services using port 80. Tailscale will be one of them, but see whether apache2 is active as well. If it does and you still want to use the docker route (which will use nginx), either stop or remove apache2.
 
 
+# Available configurations
+This settings can be set via `.env` file
+
+### CRON_MINUTES
+How often the dashboard fetch data from freqtrade bots. Default is 10
+
+### API
+Whether [API endpoints](#api-endpoints) being enabled or not. Default is false
+
+### DEBUG
+Whether debug mode being enabled or not. If being enabled, users can access debug scripts located at `public/debug`. Default is false
+
+### START_0
+Whether the profit chart's first point start from zero point. Default is false
+
+### CHART_MIN_TRADES
+How many closed trades required before a strategy's profit being plotted in the chart. Default is 2
+
+
 # API Endpoints
 By default, the API isn't enabled. You can activate API endpoints by setting `API=true` in your `.env` file. The supported responses for now are `strategy` for the strategy class name, `strategy_version` for the strategy version, `profit` for performance summary, `trades` for closed trades, `status` for open trades, and `chart_profit_data` for the data needed to plot the profit chart.
 The link to access the api is `http://<your ip or domain>/api.php?response=status&bot_id=<bot_id>`
