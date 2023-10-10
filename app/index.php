@@ -4,6 +4,15 @@ require_once('../vendor/autoload.php');
 require_once('libraries/date_helper.php');
 require_once('libraries/db.php');
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
+$dotenv->load();
+
+$start_0 = ($_ENV['START_0'] == 'true') ?: false;
+$chart_min_trades = $_ENV['CHART_MIN_TRADES'] ?: 2;
+if ($start_0) {
+    $chart_min_trades++;
+}
+
 $path = '../bots.json';
 $jsonString = file_get_contents($path);
 $jsonData = json_decode($jsonString, true);
