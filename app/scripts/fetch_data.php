@@ -33,6 +33,8 @@ if (! is_null($data1)) {
 }
 
 if ($fetch_new) {
+	$start_0 = ($_ENV['START_0'] == 'true') ?: false;
+
 	$document = [];
 	$array_others=[];
 	for($i=0; $i < count($jsonData); $i++){
@@ -75,7 +77,7 @@ if ($fetch_new) {
 
         for($j = (count($time_data) - 1); $j >= 0; $j--){
 
-        	if ($j == (count($time_data) - 1)) {
+        	if ($start_0 && ($j == (count($time_data) - 1))) {
         		$chart_profit_data[] = [
 	            	"close_profit" => 0,
 	            	"close_profit_abs" => 0,
