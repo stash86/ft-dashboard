@@ -10,6 +10,9 @@ $dotenv->load();
 $enabled = ($_ENV['DEBUG'] == 'true') ?: false;
 
 if($enabled) {
+	$start_0 = ($_ENV['START_0'] == 'true') ?: false;
+	$bot_name_as_index = ($_ENV['BOT_NAME_AS_INDEX'] == 'true') ?: false;
+
 	$path = '../../bots.json';
 	$jsonString = file_get_contents($path);
 	//$jsonString = utf8_encode($jsonString);
@@ -62,7 +65,7 @@ if($enabled) {
 
         for($j = (count($time_data) - 1); $j >= 0; $j--){
 
-        	if ($j == (count($time_data) - 1)) {
+        	if ($start_0 && ($j == (count($time_data) - 1))) {
         		$chart_profit_data[] = [
 	            	"close_profit" => 0,
 	            	"close_profit_abs" => 0,
@@ -105,6 +108,9 @@ if($enabled) {
 		
 		$config = json_decode($api->show_config(), true);
 		$strategy_name = $config['strategy'];
+		if ($bot_name_as_index){
+			$strategy_name = $config['bot_name'];
+		}
 		
 		$document[] = [
 			"_id"=> $jsonData[$i]['ip_address'],
