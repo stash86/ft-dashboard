@@ -62,6 +62,9 @@ Whether the profit chart's first point start from zero point. Default is false
 ### CHART_MIN_TRADES
 How many closed trades required before a strategy's profit being plotted in the chart. Default is 2
 
+### BOT_NAME_AS_INDEX
+Instead as using strategy's class name, use `bot_name` as index in databae
+
 
 # API Endpoints
 By default, the API isn't enabled. You can activate API endpoints by setting `API=true` in your `.env` file. The supported responses for now are `strategy` for the strategy class name, `strategy_version` for the strategy version, `profit` for performance summary, `trades` for closed trades, `status` for open trades, and `chart_profit_data` for the data needed to plot the profit chart.

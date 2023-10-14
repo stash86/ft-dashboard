@@ -34,6 +34,7 @@ if (! is_null($data1)) {
 
 if ($fetch_new) {
 	$start_0 = ($_ENV['START_0'] == 'true') ?: false;
+	$bot_name_as_index = ($_ENV['BOT_NAME_AS_INDEX'] == 'true') ?: false;
 
 	$document = [];
 	$array_others=[];
@@ -120,6 +121,10 @@ if ($fetch_new) {
 		
 		$config = json_decode($api->show_config(), true);
 		$strategy_name = $config['strategy'];
+		if ($bot_name_as_index){
+			$strategy_name = $config['bot_name'];
+		}
+		
 		
 		$document[] = [
 			"_id"=> $jsonData[$i]['ip_address'],
