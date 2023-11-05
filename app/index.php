@@ -371,6 +371,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
             var chart1, chart2, chart3
             var data_others = JSON.parse('<?php echo json_encode(is_null($data_others['data'])?[]:$data_others['data']); ?>')
             let table = new DataTable('#tableSummary', {
+                drawCallback: table_drawCallback,
                 scrollX: true
             })
             
