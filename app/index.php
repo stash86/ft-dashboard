@@ -107,7 +107,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                         foreach ($data as $key => $value) {
                         ?>
                         <tr>
-                            <td><?php echo $sanitizedKey; ?></td>
+                            <td><?php echo $key; ?></td>
                             <td><?php echo "{$value['config']['exchange']} {$value['config']['trading_mode']}"; ?></td>
                             <td><?php echo round(floatval($value['profit']['profit_closed_ratio']) * 100, 3).'%'; ?></td>
                             <td><?php echo round(floatval($value['profit']['profit_open_coin']), 3).' '.$value['balance']['stake']; ?></td>
