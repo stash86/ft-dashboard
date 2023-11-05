@@ -439,6 +439,24 @@ $data_others = $collection->findOne(['_id' => 'others']);
                 scrollY: '400px',
                 scrollCollapse: true
             })
+
+            $('.accordion-collapse-tradeClosed').on('shown.bs.collapse', function(){
+                id_table = this.dataset.tableClosed
+                if (!$.fn.dataTable.isDataTable('#'+id_table) ) {
+                    $('#'+id_table).DataTable({
+                        columnDefs: [
+                            { className: 'dt-head-center', targets: '_all' }
+                        ],
+                        drawCallback: table_drawCallback,
+                        ordering: false,
+                        scrollX: true,
+                        scrollY: '400px',
+                        scrollCollapse: true,
+                        searching: false,
+                    })
+                }
+                
+            })
             
             $(document).ready(function(){
                 draw_chart()
