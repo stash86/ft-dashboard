@@ -242,12 +242,12 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTableOpen<?php echo $sanitizedKey; ?>">
                                       <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTableOpen<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseTableOpen<?php echo $sanitizedKey; ?>">
-                                        Last 10 Closed Trades for <?php echo $key; ?>
+                                        Closed Trades for <?php echo $key; ?>
                                       </button>
                                     </h2>
                                     <div id="collapseTableOpen<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary accordion-collapse-tradeClosed" aria-labelledby="headingTableOpen<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>" data-table-closed="tableClosed<?php echo $sanitizedKey; ?>">
                                       <div class="accordion-body text-bg-dark overflow-auto">
-                                        <table class="table-secondary table table-responsive">
+                                        <table class="table-secondary table table-responsive tableClosed" id="tableClosed<?php echo $sanitizedKey; ?>">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
