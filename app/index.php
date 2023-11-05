@@ -152,7 +152,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne<?php echo $sanitizedKey; ?>">
                       <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseOne<?php echo $sanitizedKey; ?>">
-                        Details for <?php echo $sanitizedKey; ?>
+                        Details for <?php echo $key; ?>
                       </button>
                     </h2>
                     <div id="collapseOne<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingOne<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion">
