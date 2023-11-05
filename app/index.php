@@ -245,7 +245,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                         Last 10 Closed Trades for <?php echo $key; ?>
                                       </button>
                                     </h2>
-                                    <div id="collapseTableOpen<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingTableOpen<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
+                                    <div id="collapseTableOpen<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary accordion-collapse-tradeClosed" aria-labelledby="headingTableOpen<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>" data-table-closed="tableClosed<?php echo $sanitizedKey; ?>">
                                       <div class="accordion-body text-bg-dark overflow-auto">
                                         <table class="table-secondary table table-responsive">
                                             <thead>
