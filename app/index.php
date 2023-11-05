@@ -379,7 +379,6 @@ $data_others = $collection->findOne(['_id' => 'others']);
                     { className: 'dt-head-center', targets: '_all' }
                 ],
                 drawCallback: table_drawCallback,
-                fixedColumns: true,
                 scrollX: true,
                 scrollY: '400px',
                 scrollCollapse: true
