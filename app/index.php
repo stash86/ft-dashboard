@@ -85,6 +85,47 @@ $data_others = $collection->findOne(['_id' => 'others']);
                 </div>                
             </div>
             <div>
+                <div class="d-flex justify-content-center"><h5>Open Trades</h5>  (Look at each strategies' tab for more details)</div>
+                <table class="table table-responsive table-striped" id="tableOpenTrades">
+                    <thead>
+                        <tr>
+                            <td>Strategy</td>
+                            <td>Trade ID</td>
+                            <td>Dir</td>
+                            <td>Pair</td>
+                            <td>Open Since</td>
+                            <td>Open Profit (%)</td>
+                            <td>Closed Profit</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        foreach ($data as $key => $value) {
+                            if(count($value['status']) > 0){
+                                $date_now = new DateTime();
+                                for($i = 0; $i < count($value['status']); $i++) {
+                                    $open_date = new DateTime($value['status'][$i]['open_date']);
+                                    // $close_date = new DateTime($value['status'][$i]['close_date']);
+                                    $total_profit = (floatval($value['status'][$i]['profit_abs']) + floatval($value['status'][$i]['realized_profit']))
+                        ?>
+                        <tr class="<?php echo ($total_profit>0)?'table-success':(($total_profit < 0)?'table-danger':'table-light'); ?>">
+                            <td><?php echo $key; ?></td>
+                            <td><?php echo $value['status'][$i]['trade_id']; ?></td>
+                            <td><?php echo (intval($value['status'][$i]['is_short']) === 0 ?'L':'S'); ?></td>
+                            <td><?php echo $value['status'][$i]['pair']; ?></td>
+                            <td><?php echo duration_string($open_date, $date_now); ?></td>
+                            <td><?php echo round(floatval($value['status'][$i]['profit_abs']), 3).' '.$value['status'][$i]['quote_currency'].' ('.round(floatval($value['status'][$i]['profit_ratio']) * 100, 3).'%)'; ?></td>
+                            <td><?php echo round(floatval($value['status'][$i]['realized_profit']), 3).' '.$value['status'][$i]['quote_currency']; ?></td>
+                        </tr>
+                        <?php
+                                }
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-5">
                 <div class="d-flex justify-content-center"><h5>Performances Summary</h5></div>
                 <table class="table table-responsive table-dark" id="tableSummary">
                     <thead>
@@ -374,6 +415,20 @@ $data_others = $collection->findOne(['_id' => 'others']);
                 columnDefs: [
                     {
                         targets: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        className: 'dt-body-right'
+                    },
+                    { className: 'dt-head-center', targets: '_all' }
+                ],
+                drawCallback: table_drawCallback,
+                scrollX: true,
+                scrollY: '400px',
+                scrollCollapse: true
+            })
+
+            let tableOpenTrades = new DataTable('#tableOpenTrades', {
+                columnDefs: [
+                    {
+                        targets: [1, 5, 6],
                         className: 'dt-body-right'
                     },
                     { className: 'dt-head-center', targets: '_all' }
