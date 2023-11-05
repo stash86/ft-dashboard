@@ -303,7 +303,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                             if(count($value['status']) > 0) {
                             ?>
                             <div class="d-flex flex-row justify-content-center mt-3">
-                                <h3><strong>Open Trades for <?php echo $sanitizedKey; ?></strong> (Click the row for more detail)</h3>
+                                <h3><strong>Open Trades for <?php echo $key; ?></strong> (Click the row for more detail)</h3>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-secondary accordion" id="tableOpen">
