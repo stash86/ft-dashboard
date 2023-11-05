@@ -47,7 +47,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
 
 ?>
 
-<html>
+<html data-bs-theme="dark">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
