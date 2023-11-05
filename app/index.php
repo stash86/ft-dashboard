@@ -13,6 +13,8 @@ if ($start_0) {
     $chart_min_trades++;
 }
 
+$max_closed_trades = intval($_ENV['MAX_CLOSED_TRADES_SHOWN']) ?: -1;
+
 $path = '../bots.json';
 $jsonString = file_get_contents($path);
 $jsonData = json_decode($jsonString, true);
@@ -105,7 +107,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                         foreach ($data as $key => $value) {
                         ?>
                         <tr>
-                            <td><?php echo $key; ?></td>
+                            <td><?php echo $sanitizedKey; ?></td>
                             <td><?php echo "{$value['config']['exchange']} {$value['config']['trading_mode']}"; ?></td>
                             <td><?php echo round(floatval($value['profit']['profit_closed_ratio']) * 100, 3).'%'; ?></td>
                             <td><?php echo round(floatval($value['profit']['profit_open_coin']), 3).' '.$value['balance']['stake']; ?></td>
@@ -145,24 +147,25 @@ $data_others = $collection->findOne(['_id' => 'others']);
 
                 <?php
                 foreach ($data as $key => $value) {
+                    $sanitizedKey = str_replace([' ', '.', '#', '_'], [''], $key);
                 ?>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne<?php echo $key; ?>">
-                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo $key; ?>" aria-expanded="false" aria-controls="collapseOne<?php echo $key; ?>">
-                        Details for <?php echo $key; ?>
+                    <h2 class="accordion-header" id="headingOne<?php echo $sanitizedKey; ?>">
+                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseOne<?php echo $sanitizedKey; ?>">
+                        Details for <?php echo $sanitizedKey; ?>
                       </button>
                     </h2>
-                    <div id="collapseOne<?php echo $key; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingOne<?php echo $key; ?>" data-bs-parent="#mainAccordion">
+                    <div id="collapseOne<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingOne<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion">
                         <div class="accordion-body text-bg-dark">
 
-                            <div class="accordion accordion-flush mt-4" id="mainAccordion<?php echo $key; ?>">
+                            <div class="accordion accordion-flush mt-4" id="mainAccordion<?php echo $sanitizedKey; ?>">
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingConfig<?php echo $key; ?>">
-                                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConfig<?php echo $key; ?>" aria-expanded="false" aria-controls="collapseConfig<?php echo $key; ?>">
-                                        Config for <?php echo $key; ?>
+                                    <h2 class="accordion-header" id="headingConfig<?php echo $sanitizedKey; ?>">
+                                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConfig<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseConfig<?php echo $sanitizedKey; ?>">
+                                        Config for <?php echo $sanitizedKey; ?>
                                       </button>
                                     </h2>
-                                    <div id="collapseConfig<?php echo $key; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingConfig<?php echo $key; ?>" data-bs-parent="#mainAccordion<?php echo $key; ?>">
+                                    <div id="collapseConfig<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingConfig<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
                                       <div class="accordion-body text-bg-dark">
                                         <p class="text-white">Exchange (Market): <?php echo "{$value['config']['exchange']} ({$value['config']['trading_mode']})"; ?></p>
                                         <p class="text-white">Starting balance: <?php echo $value['balance']['starting_capital'].' '.$value['balance']['stake']; ?></p>
@@ -179,12 +182,12 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                         $profit_open_pct = round($profit_open * 100 / floatval($value['balance']['starting_capital']), 3);
                                         ?>
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingSummary<?php echo $key; ?>">
-                                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary<?php echo $key; ?>" aria-expanded="false" aria-controls="collapseSummary<?php echo $key; ?>">
-                                        Profit Summary for <?php echo $key; ?>
+                                    <h2 class="accordion-header" id="headingSummary<?php echo $sanitizedKey; ?>">
+                                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseSummary<?php echo $sanitizedKey; ?>">
+                                        Profit Summary for <?php echo $sanitizedKey; ?>
                                       </button>
                                     </h2>
-                                    <div id="collapseSummary<?php echo $key; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingSummary<?php echo $key; ?>" data-bs-parent="#mainAccordion<?php echo $key; ?>">
+                                    <div id="collapseSummary<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingSummary<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
                                       <div class="accordion-body text-bg-dark">
                                         <p class="text-white">Total trades: <?php echo $value['profit']['trade_count'] ?> trades</p>
                                         <p class="<?php echo ($profit_closed > 0)?'text-success':(($profit_closed<0)?'text-danger':'text-white'); ?>">Profit Closed: <?php echo round($profit_closed, 3).' '.$value['balance']['stake'].' ('.$value['profit']['profit_closed_percent'].'%)'; ?></p>
@@ -196,12 +199,12 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                     </div>
                                 </div>
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTableOpen<?php echo $key; ?>">
-                                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTableOpen<?php echo $key; ?>" aria-expanded="false" aria-controls="collapseTableOpen<?php echo $key; ?>">
-                                        Last 10 Closed Trades for <?php echo $key; ?>
+                                    <h2 class="accordion-header" id="headingTableOpen<?php echo $sanitizedKey; ?>">
+                                      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTableOpen<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseTableOpen<?php echo $sanitizedKey; ?>">
+                                        Last 10 Closed Trades for <?php echo $sanitizedKey; ?>
                                       </button>
                                     </h2>
-                                    <div id="collapseTableOpen<?php echo $key; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingTableOpen<?php echo $key; ?>" data-bs-parent="#mainAccordion<?php echo $key; ?>">
+                                    <div id="collapseTableOpen<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingTableOpen<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
                                       <div class="accordion-body text-bg-dark overflow-auto">
                                         <table class="table-secondary table table-responsive">
                                             <thead>
@@ -224,7 +227,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                                         continue;
                                                     }
 
-                                                    if($count_print<10){
+                                                    if(($max_closed_trades < 0) || ($count_print<$max_closed_trades)) {
                                                         $count_print++;
                                                     } else {
                                                         break;
@@ -259,7 +262,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                             if(count($value['status']) > 0) {
                             ?>
                             <div class="d-flex flex-row justify-content-center mt-3">
-                                <h3><strong>Open Trades for <?php echo $key; ?></strong> (Click the row for more detail)</h3>
+                                <h3><strong>Open Trades for <?php echo $sanitizedKey; ?></strong> (Click the row for more detail)</h3>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-secondary accordion" id="tableOpen">
