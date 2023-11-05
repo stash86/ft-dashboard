@@ -162,7 +162,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingConfig<?php echo $sanitizedKey; ?>">
                                       <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConfig<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseConfig<?php echo $sanitizedKey; ?>">
-                                        Config for <?php echo $sanitizedKey; ?>
+                                        Config for <?php echo $key; ?>
                                       </button>
                                     </h2>
                                     <div id="collapseConfig<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingConfig<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
@@ -184,7 +184,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSummary<?php echo $sanitizedKey; ?>">
                                       <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseSummary<?php echo $sanitizedKey; ?>">
-                                        Profit Summary for <?php echo $sanitizedKey; ?>
+                                        Profit Summary for <?php echo $key; ?>
                                       </button>
                                     </h2>
                                     <div id="collapseSummary<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingSummary<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
@@ -201,7 +201,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTableOpen<?php echo $sanitizedKey; ?>">
                                       <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTableOpen<?php echo $sanitizedKey; ?>" aria-expanded="false" aria-controls="collapseTableOpen<?php echo $sanitizedKey; ?>">
-                                        Last 10 Closed Trades for <?php echo $sanitizedKey; ?>
+                                        Last 10 Closed Trades for <?php echo $key; ?>
                                       </button>
                                     </h2>
                                     <div id="collapseTableOpen<?php echo $sanitizedKey; ?>" class="accordion-collapse collapse border border-secondary" aria-labelledby="headingTableOpen<?php echo $sanitizedKey; ?>" data-bs-parent="#mainAccordion<?php echo $sanitizedKey; ?>">
