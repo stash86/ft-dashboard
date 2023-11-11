@@ -1,4 +1,5 @@
-Live website http://ft-dashboard.ddns.net/
+Live website using free version http://ft-dashboard.ddns.net/
+Live website using paid version http://ft-dashboard.ddns.net/premium.php
 
 # How to install
 ## Initial setup

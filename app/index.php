@@ -763,7 +763,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
         <div class="container">
         	<footer>
 		        <div class="d-flex flex-row justify-content-center text-white">
-		            <span style="padding: 0;">Created by stash86, Powered by Freqtrade</span>
+		            <span style="padding: 0;">Created by <a href="https://github.com/stash86">stash86</a>. Powered by Freqtrade</span>
 		        </div>
 		    </footer>
         </div>
