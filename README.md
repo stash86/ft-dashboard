@@ -1,5 +1,11 @@
-Live website using free version http://ft-dashboard.ddns.net/
-Live website using paid version http://ft-dashboard.ddns.net/premium.php
+# Link to live websites
+* Free version http://ft-dashboard.ddns.net/
+* Premium version http://ft-dashboard.ddns.net/premium.php
+
+
+# How to get the premium version
+Being a patron of my (patreon)[#donation] will give you access to private category in my [discord server](https://discord.gg/jchkeJbtz3), where I will put the premium version
+
 
 # How to install
 ## Initial setup
@@ -106,7 +112,7 @@ docker-compose up -d
 
 ## Donation
 * Github sponsor - https://github.com/sponsors/stash86/
-* Patreon (for donation only, no extra perks) - https://patreon.com/stash86
+* Patreon (access to the premium dashboard) - https://patreon.com/stash86
 
 ## Crypto
 * BTC: 1FghqtgGLpD9F21BNDMje4iyj4cSzVPZPb
