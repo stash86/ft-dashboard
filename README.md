@@ -4,7 +4,7 @@
 
 
 # How to get the premium version
-Being a patron of my (patreon)[#donation] will give you access to private category in my [discord server](https://discord.gg/jchkeJbtz3), where I will put the premium version
+Being a patron of my [patreon](#donation) will give you access to private category in my [discord server](https://discord.gg/jchkeJbtz3), where I will put the premium version
 
 
 # How to install
