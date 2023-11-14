@@ -9,7 +9,6 @@ $dotenv->load();
 
 $path = '../../bots.json';
 $jsonString = file_get_contents($path);
-//$jsonString = utf8_encode($jsonString);
 $jsonData = json_decode($jsonString, true);
 $current_time = new DateTime();
 
