@@ -4,7 +4,7 @@
 
 
 # How to get the premium version
-Being a patron of my [patreon](#donation) will give you access to private category in my [discord server](https://discord.gg/jchkeJbtz3), where I will put the premium version
+Being a sponsor of my [github](#donation) will give you access to the private premium repo
 
 
 # How to install
@@ -112,7 +112,7 @@ docker-compose up -d
 
 ## Donation
 * Github sponsor - https://github.com/sponsors/stash86/
-* Patreon (access to the premium dashboard) - https://patreon.com/stash86
+
 
 ## Crypto
 * BTC: 1FghqtgGLpD9F21BNDMje4iyj4cSzVPZPb
