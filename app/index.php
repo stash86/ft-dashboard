@@ -157,7 +157,7 @@ $data_others = $collection->findOne(['_id' => 'others']);
                             <td><?php echo round(floatval($value['profit']['max_drawdown']) * 100, 3).'%'; ?></td>
                             <td><?php echo $value['profit']['trade_count']; ?></td>
                             <td><?php echo $value['profit']['avg_duration']; ?></td>
-                            <td><?php echo $value['profit']['win_rate'].'%'; ?></td>
+                            <td><?php echo $value['profit']['winrate'].'%'; ?></td>
                             <td><?php echo $value['profit']['days']; ?></td>
                         </tr>
                         <?php

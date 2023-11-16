@@ -48,8 +48,8 @@ if ($fetch_new) {
 		$profit['days'] = days_interval($current_time, $profit['first_trade_date']);
 		$trade_count = $profit['closed_trade_count'];
 		$win_trades = $profit['winning_trades'];
-		$win_rate = ($trade_count > 0) ? round($win_trades * 100 / $trade_count, 2) : 0;
-		$profit['win_rate'] = $win_rate;
+		// $win_rate = ($trade_count > 0) ? round($win_trades * 100 / $trade_count, 2) : 0;
+		// $profit['win_rate'] = $win_rate;
 		
 		$trades = json_decode($api->trades($trade_count), true)['trades'];
 		$balance = json_decode($api->balance(), true);
