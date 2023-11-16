@@ -1,6 +1,6 @@
 # Link to live websites
-* Free version http://ft-dashboard.ddns.net/
-* Premium version http://ft-dashboard.ddns.net/premium.php
+* Free version http://ft-dashboard.ddns.net/free.php
+* Premium version http://ft-dashboard.ddns.net/
 
 
 # How to get the premium version
