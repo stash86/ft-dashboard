@@ -37,6 +37,7 @@ if ($fetch_new) {
 
 	$document = [];
 	$array_others=[];
+	$array_strategy_name=[];
 	for($i=0; $i < count($jsonData); $i++){
 		echo "fetch datas from {$jsonData[$i]['ip_address']}\n";
 		$api = new Api($jsonData[$i]['ip_address'], $jsonData[$i]['username'], $jsonData[$i]['password']);
@@ -138,6 +139,8 @@ if ($fetch_new) {
 			"fetched"=> $current_time->format('Y-m-d H:i:s')
 		];
 
+		$array_strategy_name[] = $strategy_name;
+
 		$dur_sec = duration_string_to_seconds($profit['avg_duration']);
 		if($dur_sec > 0) {
 			$array_others[] = [
@@ -155,6 +158,14 @@ if ($fetch_new) {
 		"_id"=> 'others',
 		"data" => $array_others
 	];
+
+	sort($array_strategy_name);
+
+	$document[] = [
+		"_id"=> 'names',
+		"data" => $array_strategy_name
+	];
+
 	$collection->drop();
 	$operation_insert = $collection->insertMany($document);
 
