@@ -5,6 +5,7 @@
 
 # How to get the premium version
 Being a sponsor of my [github](#donation) will give you access to the private premium repo
+You have to choose monthly payment instead of one-time payment. Choosing monthly payment will give you access to the repo, while choosing one-time payment won't. Don't ask me why, it's how github sponsor is right now
 
 
 # How to install
