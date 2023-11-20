@@ -42,9 +42,7 @@ docker-compose up -d
 `*/10 * * * * /usr/bin/php <address to the folder>/scripts/fetch_data.php`
 The command above will fetch the data every 10 minutes. Change it to suit your preference.
 
-3. Go to scripts/fetch_data.php, find this line `if ($interval >= 600)` and change the value (in seconds) to match the time you set at your cronjob
-
-4. Customize the page yourself to suit your preference, or you can just use it as it is.
+3. Customize the page yourself to suit your preference, or you can just use it as it is.
 
 
 ## Troubleshooting
