@@ -96,7 +96,7 @@ When you enable this, this means anyone can access those scripts as well. While 
 ```
 docker-compose down
 docker-compose run --rm php composer update
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 ## Non-docker
