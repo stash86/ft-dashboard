@@ -8,6 +8,12 @@ Being a sponsor of my [github](#donation) will give you access to the private pr
 You have to choose monthly payment instead of one-time payment. Choosing monthly payment will give you access to the repo, while choosing one-time payment won't. Don't ask me why, it's how github sponsor is right now
 
 
+# What's available on premium version
+* Ability to filter chart based of date
+* Open Trade table update in background automatically every 1 minute
+* Performance Summary table update in background automatically every 5 minute
+
+
 # How to install
 ## Initial setup
 Skip this step if you think you have done them previously
