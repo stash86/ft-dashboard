@@ -11,7 +11,7 @@ You have to choose monthly payment instead of one-time payment. Choosing monthly
 # What's available on premium version
 * Ability to filter chart based of date
 * Open Trade table update in background automatically every 1 minute
-* Performance Summary table update in background automatically every 5 minute
+* Performance Summary table and profit chart update in background automatically every 5 minute
 
 
 # How to install
