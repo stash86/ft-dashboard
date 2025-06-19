@@ -1,7 +1,6 @@
 {
    "require": {
       "guzzlehttp/guzzle": "^7.0",
-      "mongodb/mongodb": "^1.16",
       "vlucas/phpdotenv": "^5.5"
    }
 }
