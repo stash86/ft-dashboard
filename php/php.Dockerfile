@@ -14,6 +14,8 @@ ARG GID=1000
 RUN groupadd -g ${GID} www
 RUN useradd -u ${UID} -ms /bin/bash -g www www
 
+RUN docker-php-ext-install pdo_pgsql pgsql
+
 USER www
 
 EXPOSE 9000
