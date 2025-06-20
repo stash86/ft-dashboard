@@ -21,9 +21,9 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
       - /var/run/docker.sock:/var/run/docker.sock
-    entrypoint: /bin/sh -c
-    command: |
-      "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet --deploy-hook 'docker exec nginx-ft nginx -s reload'; sleep 12h & wait $${!}; done"
+    # entrypoint: /bin/sh -c
+    # command: |
+    #   "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet --deploy-hook 'docker exec nginx-ft nginx -s reload'; sleep 12h & wait $${!}; done"
     depends_on:
       - nginx-ft
     networks:
