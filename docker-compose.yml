@@ -1,19 +1,36 @@
 services:
-  nginx_ft:
-    container_name: nginx_ft
+  nginx-ft:
     image: nginx:latest
-    restart: "unless-stopped"
+    container_name: nginx-ft
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./:/app
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     networks:
       - app
 
-  php_ft:
-    container_name: php_ft
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: /bin/sh -c
+    command: |
+      "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet --deploy-hook 'docker exec nginx-ft nginx -s reload'; sleep 12h & wait $${!}; done"
+    depends_on:
+      - nginx-ft
+    networks:
+      - app
+
+  php-ft:
+    container_name: php-ft
     build:
       context: ./php
       dockerfile: php.Dockerfile
@@ -26,8 +43,8 @@ services:
     networks:
       - app
 
-  cron_ft:
-    container_name: cron_ft
+  cron-ft:
+    container_name: cron-ft
     build:
       context: ./cron
       dockerfile: cron.Dockerfile
@@ -56,16 +73,6 @@ services:
       - ./database/init:/docker-entrypoint-initdb.d
       - ./database/config/postgresql.conf:/etc/postgresql/postgresql.conf:ro
       - ./database/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
-    networks:
-      - app
-
-  # Optional: Certbot for SSL certificate management
-  certbot:
-    container_name: certbot
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
     networks:
       - app
 
