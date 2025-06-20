@@ -2,8 +2,8 @@
 
 ## Link to live websites
 
-* Free version <http://ft-dashboard.ddns.net/free.php>
-* Premium version <http://ft-dashboard.ddns.net/>
+* Free version <https://ft-dashboard.ddns.net/>
+* Premium version <https://ft-dashboard-premium.ddns.net/>
 
 ## How to get the premium version
 
@@ -67,6 +67,7 @@ Then you need to set cron job to automatically update the certificate every even
 
 ```bash
 cp cert_update.sh.bak cert_update.sh
+vi cert_update.sh
 chmod +x cert_update.sh
 crontab -e
 ```
@@ -74,7 +75,7 @@ crontab -e
 Then put this entry
 
 ```bash
-0 0 28 2,4,6,8,10,12 * /path/to/your/project/cert_update.sh
+0 0 28 2,4,6,8,10,12 * /path/to/your/ft-dashboard/cert_update.sh
 ```
 
 #### Non-docker
