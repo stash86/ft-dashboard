@@ -1,7 +1,7 @@
 FROM php:8.4-fpm
 
 RUN apt-get -y update \
-    && apt-get install -y libssl-dev pkg-config libzip-dev unzip git
+    && apt-get install -y libssl-dev pkg-config libpq-dev libzip-dev unzip git
 
 RUN pecl install zip \
     && docker-php-ext-enable zip
