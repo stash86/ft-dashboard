@@ -52,7 +52,7 @@ docker-compose up -d php_ft cron_ft nginx_ft pg_db
 Replace `[domain-name]` and `[email]` at the command below with the real domain of your dashboard and your email address, for example `example.org`
 
 ```bash
-docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --force-renewal -d [domain-name] --email [email] --agree-tos
+docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d [domain-name] --email [email] --agree-tos --no-eff-email
 cp nginx/conf.d/default.conf.ssh nginx/conf.d/default.conf
 vi nginx/conf.d/default.conf
 ```
