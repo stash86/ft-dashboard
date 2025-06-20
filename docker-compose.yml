@@ -1,5 +1,6 @@
 services:
-  nginx:
+  nginx_ft:
+    container_name: nginx_ft
     image: nginx:latest
     restart: "unless-stopped"
     ports:
@@ -11,7 +12,8 @@ services:
     networks:
       - app
 
-  php:
+  php_ft:
+    container_name: php_ft
     build:
       context: ./php
       dockerfile: php.Dockerfile
@@ -24,7 +26,8 @@ services:
     networks:
       - app
 
-  cron:
+  cron_ft:
+    container_name: cron_ft
     build:
       context: ./cron
       dockerfile: cron.Dockerfile
@@ -53,6 +56,16 @@ services:
       - ./database/init:/docker-entrypoint-initdb.d
       - ./database/config/postgresql.conf:/etc/postgresql/postgresql.conf:ro
       - ./database/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+    networks:
+      - app
+
+  # Optional: Certbot for SSL certificate management
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
     networks:
       - app
 

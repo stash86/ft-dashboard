@@ -41,15 +41,31 @@ Skip this step if you think you have done them previously
 
 #### Docker installation
 
-```
-docker-compose build
+```bash
+docker-compose build php_ft cron_ft
 docker-compose run --rm php composer install
-docker-compose up -d
+docker-compose up -d php_ft cron_ft nginx_ft pg_db
+```
+
+#### Create SSH certificate
+
+Replace `[domain-name]` and `[email]` at the command below with the real domain of your dashboard and your email address, for example `example.org`
+
+```bash
+docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --force-renewal -d [domain-name] --email [email] --agree-tos
+cp nginx/conf.d/default.conf.ssh nginx/conf.d/default.conf
+vi nginx/conf.d/default.conf
+```
+
+Replace all [domain-name] with your actual domain name. After that, run
+
+```bash
+docker-compose restart nginx_ft
 ```
 
 #### Non-docker
 
-1. install PostgreSQL
+1 install PostgreSQL
 
 ```bash
 sudo apt update
@@ -58,18 +74,18 @@ sudo apt install postgresql postgresql-contrib
 
 For more details, see the official docs: <https://www.postgresql.org/download/linux/ubuntu/>
 
-2. Install some required libraries through composer
+2 Install some required libraries through composer
 
 ```bash
 composer install
 bash init_db.sh
 ```
 
-3. Setup cronjob to fetch the data from APIs regularly `crontab -e`
+3 Setup cronjob to fetch the data from APIs regularly `crontab -e`
 `*/10 * * * * /usr/bin/php <address to the folder>/scripts/fetch_data.php`
 The command above will fetch the data every 10 minutes. Change it to suit your preference.
 
-4. Customize the page yourself to suit your preference, or you can just use it as it is.
+4 Customize the page yourself to suit your preference, or you can just use it as it is.
 
 ### Troubleshooting
 
