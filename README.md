@@ -49,14 +49,27 @@ docker-compose up -d
 
 #### Non-docker
 
-1. Install some required libraries through composer
-`composer install`
+1. install PostgreSQL
 
-2. Setup cronjob to fetch the data from APIs regularly `crontab -e`
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+
+For more details, see the official docs: <https://www.postgresql.org/download/linux/ubuntu/>
+
+2. Install some required libraries through composer
+
+```bash
+composer install
+bash init_db.sh
+```
+
+3. Setup cronjob to fetch the data from APIs regularly `crontab -e`
 `*/10 * * * * /usr/bin/php <address to the folder>/scripts/fetch_data.php`
 The command above will fetch the data every 10 minutes. Change it to suit your preference.
 
-3. Customize the page yourself to suit your preference, or you can just use it as it is.
+4. Customize the page yourself to suit your preference, or you can just use it as it is.
 
 ### Troubleshooting
 
