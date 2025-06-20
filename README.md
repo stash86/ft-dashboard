@@ -63,6 +63,20 @@ Replace all [domain-name] with your actual domain name. After that, run
 docker-compose restart nginx_ft
 ```
 
+Then you need to set cron job to automatically update the certificate every even months
+
+```bash
+cp cert_update.sh.bak cert_update.sh
+chmod +x cert_update.sh
+crontab -e
+```
+
+Then put this entry
+
+```bash
+0 0 28 2,4,6,8,10,12 * /path/to/your/project/cert_update.sh
+```
+
 #### Non-docker
 
 1 install PostgreSQL

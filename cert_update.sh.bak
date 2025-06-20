@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Run certbot renew in a one-off container
+docker run --rm \
+  -v /path/to/your/project/certbot/conf:/etc/letsencrypt \
+  -v /path/to/your/project/certbot/www:/var/www/certbot \
+  certbot/certbot renew --webroot -w /var/www/certbot
+
+# Reload nginx in the running container
+docker exec nginx-ft nginx -s reload
