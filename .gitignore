@@ -1,4 +1,5 @@
-vendor
+vendor/
 bots.json
 .env
 composer.lock
+writable/

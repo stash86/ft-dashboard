@@ -3,7 +3,7 @@
 ## Link to live websites
 
 * Free version <https://ft-dashboard.ddns.net/>
-* Premium version <https://ft-dashboard-premium.ddns.net/>
+* Premium version <https://ftdashboardpremium.ddns.net/>
 
 ## How to get the premium version
 
